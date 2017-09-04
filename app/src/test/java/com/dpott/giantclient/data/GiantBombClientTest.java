@@ -31,7 +31,7 @@ public class GiantBombClientTest {
     }
 
     @Test
-    public void addition_isCorrect() throws Exception {
+    public void getGameById() throws Exception {
         GiantBombClient.getInstance().getGameResponse(C.GAME_ID_HALO_COMBAT_EVOLVED)
                 .observeOn(Schedulers.trampoline())
                 .subscribeOn(Schedulers.trampoline())
