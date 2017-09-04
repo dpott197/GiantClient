@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import com.dpott.giantclient.C
 import com.dpott.giantclient.R
 import com.dpott.giantclient.data.GiantBombClient
 import com.dpott.giantclient.data.model.game.GameResponse
@@ -21,7 +22,7 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        GiantBombClient.getInstance().getGameResponse("3030-4725")
+        GiantBombClient.getInstance().getGameResponse(C.GAME_ID_HALO_COMBAT_EVOLVED)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(object : Observer<GameResponse> {
