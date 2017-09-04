@@ -36,7 +36,7 @@ class GameDetailActivity : AppCompatActivity() {
                         Toast.makeText(this@GameDetailActivity, gameResponse.results.toString(), Toast.LENGTH_SHORT).show()
                         gameTitle.setText(gameResponse.results.name)
                         Glide.with(this@GameDetailActivity)
-                                .load(gameResponse?.results?.images?.get(0)?.screenUrl)
+                                .load(gameResponse?.results?.images?.get(0)?.superUrl)
                                 .into(gameImage)
                     }
 
