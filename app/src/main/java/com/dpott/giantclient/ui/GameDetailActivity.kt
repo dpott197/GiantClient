@@ -19,11 +19,15 @@ import kotlinx.android.synthetic.main.activity_game_detail.*
  * Created by dpott on 8/13/2017.
  */
 
-class GameDetailActivity : AppCompatActivity() {
+class GameDetailActivity : AppCompatActivity(), GameDetailContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_detail)
+        showDetail()
+    }
+
+    override fun showDetail() {
         GiantBombClient.getInstance().getGameResponse(C.GAME_ID_HALO_COMBAT_EVOLVED)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
