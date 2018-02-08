@@ -1,13 +1,13 @@
-package com.dpott.giantclient.ui
+package com.dpott.giantclient.ui.game
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.dpott.giantclient.C
+import com.dpott.giantclient.Constants
 import com.dpott.giantclient.R
-import com.dpott.giantclient.data.GiantBombClient
+import com.dpott.giantclient.data.GiantDataManager
 import com.dpott.giantclient.data.model.game.GameResponse
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -24,7 +24,7 @@ class GameDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_detail)
-        GiantBombClient.getInstance().getGameResponse(C.GAME_ID_HALO_COMBAT_EVOLVED)
+        GiantDataManager.getInstance().getGameResponse(Constants.GAME_ID_HALO_COMBAT_EVOLVED)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(object : Observer<GameResponse> {

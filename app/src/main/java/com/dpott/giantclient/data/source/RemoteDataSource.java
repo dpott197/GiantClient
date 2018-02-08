@@ -1,4 +1,4 @@
-package com.dpott.giantclient.data;
+package com.dpott.giantclient.data.source;
 
 import com.dpott.giantclient.data.model.game.GameResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -21,41 +21,26 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  * Created by dpott on 8/14/2017.
  */
 
-public class GiantBombClient {
+public class RemoteDataSource implements DataSource {
 
-    protected static GiantBombClient INSTANCE;
-
-    private final GiantBombApi mApi;
-
-    public static GiantBombClient init(boolean shouldLog) {
-        if (INSTANCE == null) {
-            OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(createQueryInterceptor())
-                    .addInterceptor(createHttpLoggingInterceptor(shouldLog))
-                    .build();
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://www.giantbomb.com/api/")
-                    .client(okHttpClient)
-                    .addConverterFactory(createJacksonConverterFactory())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build();
-
-            GiantBombApi api = retrofit.create(GiantBombApi.class);
-            INSTANCE = new GiantBombClient(api);
-        }
-
-        return INSTANCE;
-    }
-
-
-    public static GiantBombClient getInstance() {
-        return INSTANCE;
-    }
+    private final DataSource dataSource;
 
     //region Constructors
-    public GiantBombClient(GiantBombApi api) {
-        mApi = api;
+    public RemoteDataSource(boolean shouldLog) {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(createQueryInterceptor())
+                .addInterceptor(createHttpLoggingInterceptor(shouldLog))
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.giantbomb.com/api/")
+                .client(okHttpClient)
+                .addConverterFactory(createJacksonConverterFactory())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+
+        DataSource dataSource = retrofit.create(DataSource.class);
+        this.dataSource = dataSource;
     }
     //endregion
 
@@ -92,7 +77,7 @@ public class GiantBombClient {
 
     //region Responses
     public Observable<GameResponse> getGameResponse(String id) {
-        return mApi.getGameResponse(id);
+        return dataSource.getGameResponse(id);
     }
     //
 

@@ -2,6 +2,7 @@ package com.dpott.giantclient.data;
 
 import com.dpott.giantclient.C;
 import com.dpott.giantclient.data.model.game.GameResponse;
+import com.dpott.giantclient.data.source.RemoteDataSource;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,11 +19,11 @@ import static org.junit.Assert.fail;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class GiantBombClientTest {
+public class GiantHttpGiantBombApiTest {
 
     @Before
     public void before() {
-        GiantBombClient.init(true);
+        RemoteDataSource.init(true);
     }
 
     @After
@@ -32,7 +33,7 @@ public class GiantBombClientTest {
 
     @Test
     public void getGameById() throws Exception {
-        GiantBombClient.getInstance().getGameResponse(C.GAME_ID_HALO_COMBAT_EVOLVED)
+        RemoteDataSource.getInstance().getGameResponse(C.GAME_ID_HALO_COMBAT_EVOLVED)
                 .observeOn(Schedulers.trampoline())
                 .subscribeOn(Schedulers.trampoline())
                 .subscribe(new Observer<GameResponse>() {
