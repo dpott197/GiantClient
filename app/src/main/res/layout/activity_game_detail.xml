@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.dpott.giantclient.ui.game.GameDetailActivity">
+    tools:context="com.dpott.giantclient.ui.game.detail.GameDetailActivity">
 
     <TextView
         android:id="@+id/gameTitle"
@@ -21,6 +21,7 @@
     <ImageView
         android:id="@+id/gameImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:contentDescription="@null"/>
 
 </LinearLayout>

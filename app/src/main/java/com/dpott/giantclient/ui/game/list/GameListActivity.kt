@@ -1,4 +1,4 @@
-package com.dpott.giantclient.ui.game
+package com.dpott.giantclient.ui.game.list
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
