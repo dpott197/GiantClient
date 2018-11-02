@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.dpott.giantclient.Constants
 import com.dpott.giantclient.R
-import com.dpott.giantclient.data.GiantDataManager
+import com.dpott.giantclient.data.GiantDataSource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
@@ -43,7 +43,7 @@ class GameDetailActivity : AppCompatActivity(), GameDetailContract.View {
     }
 
     override fun subscribe() {
-       compositeDisposable.add(GiantDataManager.getInstance().getGameResponse(Constants.GAME_ID_HALO_COMBAT_EVOLVED)
+       compositeDisposable.add(GiantDataSource.getInstance().getGameResponse(Constants.GAME_ID_MARIO_KART_64)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(Consumer { gameResponse ->

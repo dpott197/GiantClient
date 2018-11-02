@@ -6,23 +6,23 @@ import com.dpott.giantclient.data.source.RemoteDataSource;
 
 import io.reactivex.Observable;
 
-public class GiantDataManager implements DataSource {
+public class GiantDataSource implements DataSource {
 
-    protected static GiantDataManager INSTANCE;
+    protected static GiantDataSource INSTANCE;
 
     private DataSource remoteDataSource;
 
-    public GiantDataManager(DataSource remoteDataSource) {
+    public GiantDataSource(DataSource remoteDataSource) {
         this.remoteDataSource = remoteDataSource;
     }
 
     public static void init(boolean shouldLog) {
-        INSTANCE = new GiantDataManager(
+        INSTANCE = new GiantDataSource(
                 new RemoteDataSource(shouldLog)
         );
     }
 
-    public static GiantDataManager getInstance() {
+    public static GiantDataSource getInstance() {
         return INSTANCE;
     }
 
